@@ -71,10 +71,17 @@ bias = 0.9
 softness = 1.0
 
 [editable path="Segments/Segment"]
+
 [editable path="Segments/Segment2"]
+
 [editable path="Segments/Segment3"]
+
 [editable path="Segments/Segment4"]
+
 [editable path="Segments/Segment5"]
+
 [editable path="Segments/Segment6"]
+
 [editable path="Segments/Segment7"]
+
 [editable path="Segments/Segment8"]
