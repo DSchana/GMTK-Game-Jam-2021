@@ -15,7 +15,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GTMK Game Jam 2021"
-run/main_scene="res://Character/Character.tscn"
+run/main_scene="res://Character/Player.tscn"
 config/icon="res://icon.png"
 
 [display]
