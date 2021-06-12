@@ -2,9 +2,8 @@ extends KinematicBody2D
 
 onready var animated_sprite = $AnimatedSprite
 
-var wreckingBall = null
 var velocity = Vector2.ZERO
-export var speed = 300
+export var speed = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,4 +37,3 @@ func _process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	move_and_slide(velocity)
-	wreckingBall.moveChain()

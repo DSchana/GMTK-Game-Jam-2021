@@ -4,9 +4,13 @@
 [ext_resource path="res://Character/Player.gd" type="Script" id=2]
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Player" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
+position = Vector2( 46.6164, 1.05946 )
+z_index = 1
 
 [node name="WreckingBall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 7.62939e-06, 0 )
+z_index = 1
