@@ -11,14 +11,14 @@ func _ready():
 
 func move():
 	velocity = Vector2.ZERO
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("player_up"):
 		velocity.y -= 1
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("player_down"):
 		velocity.y += 1
 	
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("player_left"):
 		velocity.x -= 1
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("player_right"):
 		velocity.x += 1
 	
 	return velocity.normalized() * speed
