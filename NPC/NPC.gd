@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var animated_sprite = $AnimatedSprite
 
 var velocity = Vector2.ZERO
+var path := PoolVector2Array()
 export var speed = 100
 
 # Called when the node enters the scene tree for the first time.
