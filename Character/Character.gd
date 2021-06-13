@@ -7,6 +7,7 @@ var velocity = Vector2.ZERO
 
 # Player default stats
 export var health = 100
+export var max_health = 100
 export var speed = 300
 export var damage = 10
 
@@ -15,6 +16,8 @@ var attacking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animated_sprite.play("idle")
+	
+	$Health.update_healthbar(health)
 
 func move():
 	velocity = Vector2.ZERO
@@ -32,6 +35,7 @@ func move():
 
 func damage(var dmg):
 	health -= dmg
+	$Health.update_healthbar(health)
 
 func animate():
 	if attacking:
@@ -43,7 +47,7 @@ func animate():
 		animated_sprite.play("idle")
 	else:
 		animated_sprite.play("moving")
-		animated_sprite.flip_h = velocity.x >= 0
+		animated_sprite.flip_h = velocity.x <= 0
 
 func _process(delta):
 	#print(health)

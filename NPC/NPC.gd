@@ -1,3 +1,5 @@
+class_name NPC
+
 extends KinematicBody2D
 
 onready var animated_sprite = $AnimatedSprite
@@ -45,8 +47,11 @@ func attack():
 		# Ranged
 		pass
 
+func damage(var dmg):
+	health -= dmg
+
 func animate():
-	if attacking:  # TODO: Attacking never ends
+	if attacking:
 		if animated_sprite.animation != "attack":
 			animated_sprite.play("attack")
 		return
@@ -58,15 +63,18 @@ func animate():
 		animated_sprite.flip_h = velocity.x >= 0
 
 func _process(delta):
+	if health <= 0:
+		get_parent().remove_child(self)
+	
 	var distance_to_character = transform.origin.distance_to(character.transform.origin)
 	
 	path = nav_2d.get_simple_path(self.global_position, character.global_position)
 	velocity = move()
 	
+	animate()
+	
 	if melee || (!melee && distance_to_character <= attack_range):
 		attack()
-	
-	animate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -74,5 +82,5 @@ func _physics_process(delta):
 
 
 func _on_AnimatedSprite_animation_finished():
-	if attacking:  # TODO: This doesn't seem sufficient
+	if attacking:
 		attacking = false
