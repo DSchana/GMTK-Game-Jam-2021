@@ -18,6 +18,7 @@ func setUpLabyrinth():
 	#player spawn
 	var spawn = $PlayerSpawnPoints.get_child(randi()%$PlayerSpawnPoints.get_child_count())
 	$Character.position = spawn.position
+	$Character.setHealth(6, 6)
 	$WreckingBall.position = spawn.position
 	
 	#monster spawn

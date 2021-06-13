@@ -29,6 +29,11 @@ func setSkin(skin):
 func _ready():
 	animated_sprite.play("idle")
 
+func setHealth(h, m_h):
+	health = h
+	max_health = m_h
+	emit_signal("set_health", health, max_health)
+
 func updateHealth():
 	emit_signal("set_health", health, max_health)
 
@@ -80,8 +85,9 @@ func _process(delta):
 			var type = get_slide_collision(i).collider.type
 			
 			if type == "health_pack":
-				health += 1
-				emit_signal("set_health", health, max_health)
+				if health < max_health:
+					health += 1
+					emit_signal("set_health", health, max_health)
 			
 			get_parent().remove_child(get_slide_collision(i).collider)
 

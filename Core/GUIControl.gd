@@ -152,6 +152,9 @@ func selectCharacter2():
 		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = true
 
 func setGameHealth(current, total):
+	if current < 0:
+		current = 0
+		
 	if total % 2 == 1:
 		total += 1
 	total /= 2
@@ -165,7 +168,7 @@ func setGameHealth(current, total):
 		var heart = heart_scene.instance()
 		if current == 0:
 			heart.get_node("Empty").visible = true
-		if current == 1:
+		elif current == 1:
 			current -= 1
 			heart.get_node("Half").visible = true
 		else:
