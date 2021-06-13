@@ -63,7 +63,7 @@ func animate():
 		animated_sprite.flip_h = velocity.x <= 0
 
 func _process(delta):
-	#print(health)
+	print(health)
 	if health < 0:
 		#print("DED")
 		# TODO: Respawn
@@ -81,6 +81,9 @@ func _process(delta):
 			
 			if type == "health_pack":
 				health += 1
+				emit_signal("set_health", health, max_health)
+			
+			get_parent().remove_child(get_slide_collision(i).collider)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

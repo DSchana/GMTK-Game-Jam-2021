@@ -17,7 +17,7 @@ export var health = 100
 export var speed = 50
 export var melee = true
 export var attack_range = 50
-export var damage = 10
+export var damage = 1
 
 var attacking = false
 
