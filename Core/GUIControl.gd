@@ -141,18 +141,18 @@ func onPauseToOptions():
 func selectCharacter1():
 	if current_state == UI_STATE.CHARACTER_SELECT:
 		emit_signal("set_skin", "normal")
-		$CharacterSelect/HBoxContainer/Character1/SelectionNormal.visible = false
-		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = true
-		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = true
-		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = false
-
-func selectCharacter2():
-	if current_state == UI_STATE.CHARACTER_SELECT and character2_unlocked:
-		emit_signal("set_skin", "golden")
 		$CharacterSelect/HBoxContainer/Character1/SelectionNormal.visible = true
 		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = false
 		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = false
 		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = true
+
+func selectCharacter2():
+	if current_state == UI_STATE.CHARACTER_SELECT and character2_unlocked:
+		emit_signal("set_skin", "golden")
+		$CharacterSelect/HBoxContainer/Character1/SelectionNormal.visible = false
+		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = true
+		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = true
+		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = false
 
 func setGameHealth(current, total):
 	if current < 0:
