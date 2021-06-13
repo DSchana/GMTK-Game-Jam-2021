@@ -14,7 +14,7 @@ export var damage = 1
 var attacking = false
 
 signal set_max_health(value)
-signal set_heath(value)
+signal set_health(value)
 
 
 # Called when the node enters the scene tree for the first time.
