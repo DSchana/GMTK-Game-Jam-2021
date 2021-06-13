@@ -11,6 +11,7 @@ func _ready():
 	$CanvasLayer/GUIControl.connect("set_skin", $Character, "setSkin")
 	$CanvasLayer/GUIControl.connect("game_start", self, "setUpLabyrinth")
 	$Character.connect("set_health", $CanvasLayer/GUIControl, "setGameHealth")
+	$Character.connect("on_death", $CanvasLayer/GUIControl, "restart")
 
 func setUpLabyrinth():
 	$Character.updateHealth()

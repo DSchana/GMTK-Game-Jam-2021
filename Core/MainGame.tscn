@@ -273,4 +273,3 @@ position = Vector2( 2460.76, 1489.04 )
 
 [node name="PowerUp Spawn 15" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1686.79, 975.568 )
-

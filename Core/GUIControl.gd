@@ -33,6 +33,9 @@ func _ready():
 		$CharacterSelect/HBoxContainer/Character2/Contents/VBoxContainer/CenterContainer/Lock.visible = false
 	
 
+func restart():
+	_ready()
+
 func _process(delta):
 	if current_state == UI_STATE.MAIN:
 		pass

@@ -14,6 +14,7 @@ export var damage = 1
 var attacking = false
 
 signal set_health(current, total)
+signal on_death
 
 func setSkin(skin):
 	if skin == "normal":
@@ -28,6 +29,7 @@ func setSkin(skin):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animated_sprite.play("idle")
+	
 
 func setHealth(h, m_h):
 	health = h
@@ -68,11 +70,8 @@ func animate():
 		animated_sprite.flip_h = velocity.x <= 0
 
 func _process(delta):
-	print(health)
-	if health < 0:
-		#print("DED")
-		# TODO: Respawn
-		pass
+	if health <= 0:
+		emit_signal("on_death")
 	
 	var distance_to_ball = transform.origin.distance_to(wreckingBall.transform.origin)
 	
