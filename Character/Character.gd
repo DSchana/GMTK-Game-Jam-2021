@@ -4,7 +4,14 @@ onready var animated_sprite = $AnimatedSprite
 
 var wreckingBall = null
 var velocity = Vector2.ZERO
+
+# Player default stats
+export var health = 100
 export var speed = 300
+export var attack_range = 5  # 5 is melee
+export var damage = 10
+
+var attacking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,17 +31,28 @@ func move():
 	
 	return velocity.normalized() * speed
 
+func damage(var dmg):
+	health -= dmg
+
 func animate():
-	if velocity == Vector2.ZERO:
+	if attacking:
+		animated_sprite.play("attack")
+		attacking == false
 		return
-	elif velocity.length() < 0.01:
-		velocity = Vector2.ZERO
+	
+	if velocity == Vector2.ZERO:
 		animated_sprite.play("idle")
 	else:
 		animated_sprite.play("moving")
 		animated_sprite.flip_h = velocity.x >= 0
 
 func _process(delta):
+	#print(health)
+	if health < 0:
+		print("DED")
+		# TODO: Respawn
+		pass
+	
 	velocity = move()
 	animate()
 

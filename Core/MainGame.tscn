@@ -1,18 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Rooms/StartRoom.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Character/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Character/WreckingBall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Core/MainGame.gd" type="Script" id=4]
+[ext_resource path="res://Character/Character.tscn" type="PackedScene" id=5]
 
 [node name="Root" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="GameMap" type="Node2D" parent="."]
 
-[node name="Node2D" parent="GameMap" instance=ExtResource( 1 )]
-position = Vector2( 96, 32 )
+[node name="Navigation2D" type="Navigation2D" parent="GameMap"]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 96 )
+[node name="StartRoom" parent="GameMap/Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( 96, 32 )
 
 [node name="NPC" parent="." instance=ExtResource( 3 )]
 position = Vector2( 378.5, 149.5 )
+
+[node name="NPC 2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 376, 77.5 )
+
+[node name="Character" parent="." instance=ExtResource( 5 )]
+position = Vector2( 162.5, 77.5 )
+
+[node name="WreckingBall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.5, 77 )

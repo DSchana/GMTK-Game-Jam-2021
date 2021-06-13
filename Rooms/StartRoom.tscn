@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tilesets/RoomTiles.tres" type="TileSet" id=1]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 187.039, 154.934, 187.436, 171.205, 132.67, 170.411, 132.67, 154.537, 4.48751, 154.537, 3.69381, 20.0048, 314.428, 20.7985, 315.222, 154.537 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 3 ), PoolIntArray( 0, 3, 6, 7 ) ]
+outlines = [ PoolVector2Array( 3.69381, 20.0048, 314.428, 20.7985, 315.222, 154.537, 187.039, 154.934, 187.436, 171.205, 132.67, 170.411, 132.67, 154.537, 4.48751, 154.537 ) ]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Node2D" type="Node2D"]
+z_index = -2
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="NavigationPolygonInstance"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 3
