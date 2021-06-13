@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var animated_sprite = $AnimatedSprite
+onready var animated_sprite = $DefaultSkin
 
 var wreckingBall = null
 var velocity = Vector2.ZERO
@@ -13,16 +13,20 @@ export var damage = 1
 
 var attacking = false
 
-signal set_max_health(value)
-signal set_health(value)
+signal set_health(current, total)
 
+func setSkin(skin):
+	if skin == "normal":
+		animated_sprite = $DefaultSkin
+	if skin == "golden":
+		animated_sprite = $GoldenSkin
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animated_sprite.play("idle")
-	
-	emit_signal("set_max_health", health)
-	emit_signal("set_health", health)
+
+func updateHealth():
+	emit_signal("set_health", health, max_health)
 
 func move():
 	velocity = Vector2.ZERO
@@ -40,7 +44,7 @@ func move():
 
 func damage(var dmg):
 	health -= dmg
-	emit_signal("set_health", health)
+	emit_signal("set_health", health, max_health)
 
 func animate():
 	if attacking:

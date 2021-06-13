@@ -7,6 +7,8 @@ var previous_state = UI_STATE.MAIN # only used for options menu
 
 var character2_unlocked = true
 
+onready var heart_scene = load("res://UI/Heart.tscn")
+
 signal game_start
 signal set_skin(value)
 
@@ -140,7 +142,6 @@ func selectCharacter1():
 		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = true
 		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = true
 		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = false
-		
 
 func selectCharacter2():
 	if current_state == UI_STATE.CHARACTER_SELECT and character2_unlocked:
@@ -149,6 +150,28 @@ func selectCharacter2():
 		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = false
 		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = false
 		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = true
+
+func setGameHealth(current, total):
+	if total % 2 == 1:
+		total += 1
+	total /= 2
+	
+	var list = $GameGUI/MarginContainer/HealthBar
+	for n in list.get_children():
+		list.remove_child(n)
+		n.queue_free()
+	
+	for i in range(total):
+		var heart = heart_scene.instance()
+		if current == 0:
+			heart.get_node("Empty").visible = true
+		if current == 1:
+			current -= 1
+			heart.get_node("Half").visible = true
+		else:
+			current -= 2
+			heart.get_node("Full").visible = true
+		list.add_child(heart)
 
 func onMainMenuToExit():
 	if current_state == UI_STATE.MAIN:
