@@ -17,9 +17,13 @@ signal set_health(current, total)
 
 func setSkin(skin):
 	if skin == "normal":
+		animated_sprite.visible = false
 		animated_sprite = $DefaultSkin
+		animated_sprite.visible = true
 	if skin == "golden":
+		animated_sprite.visible = false
 		animated_sprite = $GoldenSkin
+		animated_sprite.visible = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
