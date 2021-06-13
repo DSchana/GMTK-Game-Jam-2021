@@ -34,3 +34,5 @@ func _physics_process(delta):
 	moveChain()
 	
 	velocity *= drag
+	
+	# TODO: Damage enemies

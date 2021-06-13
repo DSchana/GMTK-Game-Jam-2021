@@ -3,14 +3,18 @@ extends KinematicBody2D
 onready var animated_sprite = $AnimatedSprite
 onready var nav_2d : Navigation2D = $"../GameMap/Navigation2D"
 onready var character : KinematicBody2D = $"../Character"
+onready var collision_box : CollisionShape2D = $ColisionBox
 
 var velocity = Vector2.ZERO
 var path := PoolVector2Array()
 
+const melee_range = 64
+
 # NPC default stats
 export var health = 100
 export var speed = 50
-export var attack_range = 5  # 5 is melee
+export var melee = true
+export var attack_range = 50
 export var damage = 10
 
 var attacking = false
@@ -28,18 +32,23 @@ func move():
 	return velocity.normalized() * speed
 
 func attack():
-	attacking = true
-	if attack_range <= 5:
-		character.damage(damage)
-		pass
+	if attacking:
+		return
+	
+	if melee:
+		for i in get_slide_count():
+			if get_slide_collision(i).collider == character:
+				attacking = true
+				character.damage(damage)
 	else:
+		attacking = true
 		# Ranged
 		pass
 
 func animate():
-	if attacking:
-		animated_sprite.play("attack")
-		attacking == false
+	if attacking:  # TODO: Attacking never ends
+		if animated_sprite.animation != "attack":
+			animated_sprite.play("attack")
 		return
 	
 	if velocity == Vector2.ZERO:
@@ -54,12 +63,16 @@ func _process(delta):
 	path = nav_2d.get_simple_path(self.global_position, character.global_position)
 	velocity = move()
 	
-	if !animated_sprite.is_playing() || !animated_sprite.animation == "attack":
-		if distance_to_character <= attack_range:
-			attack()
-		
-		animate()
+	if melee || (!melee && distance_to_character <= attack_range):
+		attack()
+	
+	animate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	move_and_slide(velocity)
+
+
+func _on_AnimatedSprite_animation_finished():
+	if attacking:  # TODO: This doesn't seem sufficient
+		attacking = false

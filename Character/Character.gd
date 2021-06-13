@@ -8,7 +8,6 @@ var velocity = Vector2.ZERO
 # Player default stats
 export var health = 100
 export var speed = 300
-export var attack_range = 5  # 5 is melee
 export var damage = 10
 
 var attacking = false
@@ -49,11 +48,14 @@ func animate():
 func _process(delta):
 	#print(health)
 	if health < 0:
-		print("DED")
+		#print("DED")
 		# TODO: Respawn
 		pass
 	
+	var distance_to_ball = transform.origin.distance_to(wreckingBall.transform.origin)
+	
 	velocity = move()
+
 	animate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
