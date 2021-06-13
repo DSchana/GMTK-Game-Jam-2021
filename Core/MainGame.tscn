@@ -235,52 +235,54 @@ position = Vector2( 2893.29, 886.661 )
 [node name="Boss Spawn" type="Position2D" parent="BossSpawnPoints"]
 position = Vector2( 1793.45, 1806.84 )
 
-[node name="PowerUpSpawnPoint" type="Node2D" parent="."]
+[node name="PowerUpSpawnPoints" type="Node2D" parent="."]
 
-[node name="PowerUp Spawn 1" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 1" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1150.67, 949.14 )
 
-[node name="PowerUp Spawn 2" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 2" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 2747.7, 1964.75 )
 
-[node name="PowerUp Spawn 3" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 3" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1407.4, 2663.22 )
 
-[node name="PowerUp Spawn 4" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 4" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1573.52, 2953.93 )
 
-[node name="PowerUp Spawn 5" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 5" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1800.05, 2240.36 )
 
-[node name="PowerUp Spawn 6" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 6" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1441.38, 1704.24 )
 
-[node name="PowerUp Spawn 7" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 7" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1796.28, 1470.16 )
 
-[node name="PowerUp Spawn 8" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 8" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 2117.19, 1798.63 )
 
-[node name="PowerUp Spawn 9" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 9" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 606.995, 1787.3 )
 
-[node name="PowerUp Spawn 10" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 10" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 463.526, 1156.79 )
 
-[node name="PowerUp Spawn 11" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 11" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1173.32, 2278.11 )
 
-[node name="PowerUp Spawn 12" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 12" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1841.58, 1073.73 )
 
-[node name="PowerUp Spawn 13" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 13" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1969.95, 2893.52 )
 
-[node name="PowerUp Spawn 14" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 14" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 2460.76, 1489.04 )
 
-[node name="PowerUp Spawn 15" type="Position2D" parent="PowerUpSpawnPoint"]
+[node name="PowerUp Spawn 15" type="Position2D" parent="PowerUpSpawnPoints"]
 position = Vector2( 1686.79, 975.568 )
 
 [node name="HealthPack" parent="." instance=ExtResource( 7 )]
 position = Vector2( 813.046, 151.823 )
+
+[node name="Mobs" type="Node2D" parent="."]
