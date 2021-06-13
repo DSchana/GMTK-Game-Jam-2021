@@ -66,6 +66,13 @@ func _process(delta):
 	velocity = move()
 
 	animate()
+	
+	for i in get_slide_count():
+		if get_slide_collision(i).collider is PowerUp:
+			var type = get_slide_collision(i).collider.type
+			
+			if type == "health_pack":
+				health += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

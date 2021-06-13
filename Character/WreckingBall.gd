@@ -43,5 +43,4 @@ func _physics_process(delta):
 	
 	for i in get_slide_count():
 		if get_slide_collision(i).collider.has_method("damage"):
-			print(base_damage * velocity.length())
 			get_slide_collision(i).collider.damage(base_damage * velocity.length())
