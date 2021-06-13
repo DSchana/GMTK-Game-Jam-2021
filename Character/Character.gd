@@ -6,18 +6,23 @@ var wreckingBall = null
 var velocity = Vector2.ZERO
 
 # Player default stats
-export var health = 100
-export var max_health = 100
+export var health = 6
+export var max_health = 6
 export var speed = 300
-export var damage = 10
+export var damage = 1
 
 var attacking = false
+
+signal set_max_health(value)
+signal set_heath(value)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animated_sprite.play("idle")
 	
-	$Health.update_healthbar(health)
+	emit_signal("set_max_health", health)
+	emit_signal("set_health", health)
 
 func move():
 	velocity = Vector2.ZERO
@@ -35,7 +40,7 @@ func move():
 
 func damage(var dmg):
 	health -= dmg
-	$Health.update_healthbar(health)
+	emit_signal("set_health", health)
 
 func animate():
 	if attacking:

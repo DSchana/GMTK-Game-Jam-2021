@@ -5,6 +5,11 @@ enum UI_STATE{MAIN, CHARACTER_SELECT, OPTIONS, CREDITS, GAME, GAME_PAUSE}
 export var current_state = UI_STATE.MAIN
 var previous_state = UI_STATE.MAIN # only used for options menu
 
+var character2_unlocked = true
+
+signal game_start
+signal set_skin(value)
+
 func _ready():
 	get_tree().paused = true # prevents game from running in background
 	$MainMenu/ButtonListFlat/TopBar/StartButton.connect("pressed", self, "onMainToCharacterSelect")
@@ -15,6 +20,16 @@ func _ready():
 	$PauseMenu/VBoxContainer/ResumeButton.connect("pressed", self, "onGameResume")
 	$PauseMenu/VBoxContainer/OptionsButton.connect("pressed", self, "onPauseToOptions")
 	$PauseMenu/VBoxContainer/ExitButton.connect("pressed", self, "onPauseToMainMenu")
+	
+	#character select
+	$CharacterSelect/HBoxContainer/Character1/TextureButton.connect("pressed", self, "selectCharacter1")
+	$CharacterSelect/HBoxContainer/Character2/TextureButton.connect("pressed", self, "selectCharacter2")
+	
+	if character2_unlocked:
+		$CharacterSelect/HBoxContainer/Character2/Contents/VBoxContainer/CenterContainer/Unlocked.visible = true
+		$CharacterSelect/HBoxContainer/Character2/Contents/VBoxContainer/CenterContainer/Locked.visible = false
+		$CharacterSelect/HBoxContainer/Character2/Contents/VBoxContainer/CenterContainer/Lock.visible = false
+	
 
 func _process(delta):
 	if current_state == UI_STATE.MAIN:
@@ -68,6 +83,8 @@ func onCharacterSelectToGame():
 		$Background.visible = false
 		$CharacterSelect.visible = false
 		$GameGUI.visible = true
+		emit_signal("game_start")
+		
 		get_tree().paused = false
 
 func onOptionsToMain():
@@ -115,6 +132,23 @@ func onPauseToOptions():
 		current_state = UI_STATE.OPTIONS
 		$PauseMenu.visible = false
 		$OptionsMenu.visible = true
+
+func selectCharacter1():
+	if current_state == UI_STATE.CHARACTER_SELECT:
+		emit_signal("set_skin", "normal")
+		$CharacterSelect/HBoxContainer/Character1/SelectionNormal.visible = false
+		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = true
+		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = true
+		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = false
+		
+
+func selectCharacter2():
+	if current_state == UI_STATE.CHARACTER_SELECT and character2_unlocked:
+		emit_signal("set_skin", "golden")
+		$CharacterSelect/HBoxContainer/Character1/SelectionNormal.visible = true
+		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = false
+		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = false
+		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = true
 
 func onMainMenuToExit():
 	if current_state == UI_STATE.MAIN:

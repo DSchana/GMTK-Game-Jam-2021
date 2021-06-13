@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "NPC",
-"language": "GDScript",
-"path": "res://NPC/NPC.gd"
-} ]
-_global_script_class_icons={
-"NPC": ""
-}
-
 [application]
 
 config/name="GTMK Game Jam 2021"
