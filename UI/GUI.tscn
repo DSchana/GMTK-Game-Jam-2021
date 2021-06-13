@@ -861,3 +861,45 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RestartScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="RestartScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="RestartScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RestartScreen/CenterContainer"]
+margin_left = 148.0
+margin_top = 114.0
+margin_right = 332.0
+margin_bottom = 156.0
+custom_fonts/font = ExtResource( 3 )
+text = "You Lost
+Press Any Key To Return
+to the main menu"
+align = 1
+valign = 1
+
+[node name="Reset" type="TextureButton" parent="RestartScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

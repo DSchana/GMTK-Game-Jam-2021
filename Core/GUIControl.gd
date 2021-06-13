@@ -1,6 +1,6 @@
 extends Control
 
-enum UI_STATE{MAIN, CHARACTER_SELECT, OPTIONS, CREDITS, GAME, GAME_PAUSE}
+enum UI_STATE{MAIN, CHARACTER_SELECT, OPTIONS, CREDITS, GAME, GAME_PAUSE, LOSE}
 
 export var current_state = UI_STATE.MAIN
 var previous_state = UI_STATE.MAIN # only used for options menu
@@ -26,6 +26,8 @@ func _ready():
 	#character select
 	$CharacterSelect/HBoxContainer/Character1/TextureButton.connect("pressed", self, "selectCharacter1")
 	$CharacterSelect/HBoxContainer/Character2/TextureButton.connect("pressed", self, "selectCharacter2")
+	
+	$RestartScreen/Reset.connect("pressed", self, "onBackToMenu")
 	
 	if character2_unlocked:
 		$CharacterSelect/HBoxContainer/Character2/Contents/VBoxContainer/CenterContainer/Unlocked.visible = true
@@ -153,6 +155,20 @@ func selectCharacter2():
 		$CharacterSelect/HBoxContainer/Character1/SelectionChosen.visible = true
 		$CharacterSelect/HBoxContainer/Character2/SelectionNormal.visible = true
 		$CharacterSelect/HBoxContainer/Character2/SelectionChosen.visible = false
+		
+func onEndGameScreen():
+	if current_state == UI_STATE.GAME:
+		current_state = UI_STATE.LOSE
+		$GameGUI.visible = false
+		$RestartScreen.visible = true
+		get_tree().paused = false
+
+func onBackToMenu():
+	if current_state == UI_STATE.LOSE:
+		current_state = UI_STATE.MAIN
+		$Background.visible = true
+		$RestartScreen.visible = false
+		$MainMenu.visible = true
 
 func setGameHealth(current, total):
 	if current < 0:
